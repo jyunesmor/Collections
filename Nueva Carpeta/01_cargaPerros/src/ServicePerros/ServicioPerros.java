@@ -12,53 +12,48 @@ import java.util.Scanner;
 
 public class ServicioPerros {
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
-    Perros p = new Perros();  // Drear Objeto Perro
+    ArrayList <Perros> perro = new ArrayList();
     
-public void cargaPerros(Perros p) {
+public void cargaPerros() {
      
     System.out.println(" Ingrese el Nombre del Perro ");
-    p.setNombre(leer.next());
+    String nombre = leer.next();
     
     System.out.println(" Ingrese la Raza de ");
-    p.setRaza(leer.next());
+    String raza = leer.next();
     
     System.out.println(" Ingrese la Edad ");
-    p.setEdad(leer.nextInt());
+    Integer edad = leer.nextInt();
     
-    p.getPerro().add(p);
+    perro.add(new Perros(nombre,raza,edad));
    
 } // Fin Metodo Carga Perros
     
-public void mostrarPerros(Perros p){
-  
-        for (Object perro : p.getPerro()) {
-            System.out.println(perro);
+public void mostrarPerros(){
+        for (Perros list : perro) {
+           System.out.println(list.getNombre());
         }
-  
+          
 } // Fin Metodo Mostrar Lista Perros
 
 public void carga(){
-    
-    boolean flag = false; 
-    String bandera = "";
+    String bandera = " ";
     do{
-        System.out.println(" Ingreso de Perros ");
-        System.out.println("-----------------");
+        System.out.println(" ----- Ingreso de Perros ---- ");
+        System.out.println(" ");
         
-        cargaPerros(p);
+        cargaPerros();// Metodo para Cargar el ArrayList
        
         System.out.println("-----------------");
         System.out.println(" ¿Desea continuar con la carga? ");
         bandera = leer.next();
-        if (bandera.equalsIgnoreCase("n")) {
-            flag = true;
-            System.out.println(" Decidio Salir ");
-            System.out.println(" La Lista de Perros ingresados es: ");
-            mostrarPerros(p);
-        } 
 
-    } while (flag == false);
-
+    } while (bandera.equalsIgnoreCase("s"));
+    System.out.println("");
+        System.out.println(" La Lista de Perros ingresados es: ");
+        mostrarPerros(); // Metodo para Mostrar el ArrayList
+        System.out.println("");
+   
 } // Fin Clase Carga
   
 
