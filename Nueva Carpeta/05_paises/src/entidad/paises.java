@@ -52,8 +52,7 @@ public class paises implements Comparable<paises> {
         return " El Pais Ingresado es [ " + paises + " ]";
     }
 
-    
-    // ordenar Nombres de Paises
+    // Ordenar Nombres de Paises
     @Override
     public int compareTo(paises t) {
         return this.paises.compareTo(t.getPaises());

@@ -13,9 +13,7 @@ public class Main_Tienda {
         servicioProducto sp = new servicioProducto();
         
         
-//        sp.cargaProductos(p);
-//        sp.mostrarProductos();
-          sp.mainTienda(p);
+        sp.mainTienda(p);
         
 
     }

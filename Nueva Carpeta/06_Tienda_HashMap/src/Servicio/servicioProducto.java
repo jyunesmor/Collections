@@ -18,18 +18,50 @@ import java.util.Scanner;
 public class servicioProducto {
 
     Scanner leer = new Scanner(System.in).useDelimiter("\n");
-    HashMap<Integer, productos> tienda = new HashMap();
+    HashMap<Integer,productos> tienda = new HashMap();
 
     public void mainTienda(productos p) {
+        boolean flag = false;
         do {
+           
+            System.out.println("MENU PRODUCTOS");
             System.out.println("");
-            cargaProductos(p);
-            System.out.println("");
-        } while (!continuarCarga() == false);
-        System.out.println("");
-        mostrarProductos();
+            System.out.println("1. Ingresar producto");
+            System.out.println("2. Modificar precio");
+            System.out.println("3. Mostrar listado de productos");
+            System.out.println("4. Eliminar Producto");
+            System.out.println("5. Salir");
 
-    }
+            int ops = leer.nextInt();
+            switch (ops) {
+                case 1:
+                    do {
+                        System.out.println("");
+                        cargaProductos(p);
+                        System.out.println("");
+                    } while (!continuarCarga() == false);
+                    break;
+                case 2:
+                    modificarPrecio();
+                    break;
+                case 3:
+                    mostrarProductos();
+                    break;
+                case 4:
+                    eliminarProducto();
+                    mostrarProductos();
+                    break;
+                case 5:
+                    System.out.println("");
+                    System.out.println(" Decidiste Salir, Gracias".toUpperCase());
+                    flag = true;
+                    break;
+                default:
+                    System.out.println(" La opcion ingresada es incorrecta, ingresela nuevamente");
+            }
+        } while (flag == false);
+
+    } // Fin Main Tienda
 
     public boolean continuarCarga() {
         String letra;
@@ -63,5 +95,36 @@ public class servicioProducto {
         }
     } // Fin metodo mostrar Lista Map
 
+    public void modificarPrecio() {
+        
+        System.out.println(" Menu Modificar Precio ".toUpperCase());
+       
+        System.out.println("");
+        System.out.println(" Ingrese Codigo del Producto a Modificar ");
+        Integer cod = leer.nextInt();
+        System.out.println(" Ingrese el nuevo valor del producto ");
+        Integer nval = leer.nextInt();
+
+        for (Map.Entry<Integer, productos> aux : tienda.entrySet()) {
+            if (aux.getKey() == cod) {
+               aux.getValue().setValorProd(nval);
+            }
+        }
+
+    }
+    
+    public void eliminarProducto() {
+        System.out.println("");
+        System.out.println(" Ingrese Codigo del Producto a Eliminar ");
+        Integer cod = leer.nextInt();
+
+        for (Map.Entry<Integer, productos> aux : tienda.entrySet()) {
+            if (aux.getKey().equals(cod)) {
+                tienda.remove(aux.getKey());
+            }
+        }
+
+    }
+    
 } // Fin Main Tienda
 
